@@ -1,17 +1,27 @@
 package com._DM.E_commerce.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.UUID;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class Pagamento {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-    private Instant moment;
+    private LocalDate momento;
+
+    @OneToOne
+    @MapsId
+    private Pedido pedido;
+
 }
