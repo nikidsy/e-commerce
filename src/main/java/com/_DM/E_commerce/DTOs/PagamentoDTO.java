@@ -1,23 +1,24 @@
 package com._DM.E_commerce.DTOs;
 
-import com._DM.E_commerce.enums.StatusDoPedido;
+import com._DM.E_commerce.entity.Pagamento;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.util.UUID;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class PagamentoDTO {
+
     private UUID id;
-    private LocalDate moment;
+    private LocalDate momento;
     private UUID pedidoId;
 
-    public PagamentoDTO() {}
-
-    public UUID getId() { return id; }
-    public void setId(UUID id) { this.id = id; }
-
-    public LocalDate getMoment() { return moment; }
-    public void setMoment(LocalDate moment) { this.moment = moment; }
-
-    public UUID getPedidoId() { return pedidoId; }
-    public void setPedidoId(UUID pedidoId) { this.pedidoId = pedidoId; }
+    public PagamentoDTO(Pagamento pagamento){
+        this.id = pagamento.getId();
+        this.momento = pagamento.getMomento();
+        this.pedidoId = pagamento.getPedido().getId();
+    }
 }

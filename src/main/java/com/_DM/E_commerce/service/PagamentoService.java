@@ -17,8 +17,8 @@ import java.util.UUID;
 public class PagamentoService {
 
     private final UsuarioRepository usuarioRepository;
-    private PagamentoRepository pagamentoRepository;
-    private PedidoRepository pedidoRepository;
+    private final PagamentoRepository pagamentoRepository;
+    private final PedidoRepository pedidoRepository;
 
     public PagamentoService(PagamentoRepository pagamentoRepository, PedidoRepository pedidoRepository, UsuarioRepository usuarioRepository) {
         this.pagamentoRepository = pagamentoRepository;
@@ -28,8 +28,7 @@ public class PagamentoService {
 
     public PagamentoDTO pagar(UUID pedidoId) {
 
-        Optional<Pedido> pedidoOptional =
-                pedidoRepository.findById(pedidoId);
+        Optional<Pedido> pedidoOptional = pedidoRepository.findById(pedidoId);
 
         if (pedidoOptional.isEmpty()) {
             return null;
@@ -46,12 +45,6 @@ public class PagamentoService {
         pedido.setStatus(StatusDoPedido.PAGO);
         pedidoRepository.save(pedido);
 
-        PagamentoDTO dto = new PagamentoDTO();
-        dto.setId(pagamento.getId());
-        dto.setMoment(pagamento.getMomento());
-        dto.setPedidoId(pedido.getId());
-
-        return dto;
+        return new PagamentoDTO(pagamento);
     }
-
 }

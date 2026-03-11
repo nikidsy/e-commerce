@@ -1,7 +1,6 @@
 package com._DM.E_commerce.controller;
 
 import com._DM.E_commerce.DTOs.PagamentoDTO;
-import com._DM.E_commerce.entity.Pagamento;
 import com._DM.E_commerce.service.PagamentoService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,8 +22,8 @@ public class PagamentoController {
 
 
     @PostMapping("/{pedidoId}")
-    public ResponseEntity<Pagamento> pagar(@PathVariable UUID pedidoId) {
-        Pagamento pagamento = service.pagarPedido(pedidoId);
+    public ResponseEntity<PagamentoDTO> pagar(@PathVariable UUID pedidoId) {
+        PagamentoDTO pagamento = service.pagar(pedidoId);
         return ResponseEntity.ok(pagamento);
     }
 }
