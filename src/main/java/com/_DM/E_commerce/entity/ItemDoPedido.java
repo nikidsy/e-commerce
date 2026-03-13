@@ -1,6 +1,5 @@
 package com._DM.E_commerce.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,7 +26,6 @@ public class ItemDoPedido {
         this.preco = preco;
     }
 
-    @JsonBackReference
     public Pedido getPedido() {
         return id.getPedido();
     }
