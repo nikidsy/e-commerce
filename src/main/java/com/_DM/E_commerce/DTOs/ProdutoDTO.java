@@ -10,10 +10,13 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProdutoDTO {
+
     private UUID id;
     private String nome;
     private String descricao;
     private String imgUrl;
     private String preco;
+    private String foto;
+
     private Set<UUID> categoriasIds;
 }
