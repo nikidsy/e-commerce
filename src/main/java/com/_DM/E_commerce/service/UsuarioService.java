@@ -12,6 +12,7 @@ import java.util.UUID;
 
 @Service
 public class UsuarioService {
+
     private UsuarioRepository usuarioRepository;
 
     public UsuarioService(UsuarioRepository usuarioRepository) {
@@ -21,13 +22,16 @@ public class UsuarioService {
     public UsuarioDTO criarUsuario(UsuarioDTO dto) {
 
         Usuario usuario = new Usuario();
+
         usuario.setNome(dto.getNome());
         usuario.setEmail(dto.getEmail());
         usuario.setSenha(dto.getSenha());
+        usuario.setFoto(dto.getFoto());
 
         usuario = usuarioRepository.save(usuario);
 
         dto.setId(usuario.getId());
+
         return dto;
     }
 
@@ -37,11 +41,15 @@ public class UsuarioService {
         List<UsuarioDTO> lista = new ArrayList<>();
 
         for (Usuario u : usuarios) {
+
             UsuarioDTO dto = new UsuarioDTO();
+
             dto.setId(u.getId());
             dto.setNome(u.getNome());
             dto.setEmail(u.getEmail());
             dto.setSenha(u.getSenha());
+            dto.setFoto(u.getFoto());
+
             lista.add(dto);
         }
 
@@ -60,14 +68,13 @@ public class UsuarioService {
         Usuario u = usuarioOptional.get();
 
         UsuarioDTO dto = new UsuarioDTO();
+
         dto.setId(u.getId());
         dto.setNome(u.getNome());
         dto.setEmail(u.getEmail());
         dto.setSenha(u.getSenha());
+        dto.setFoto(u.getFoto());
 
         return dto;
     }
 }
-
-
-
